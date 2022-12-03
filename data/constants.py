@@ -7,30 +7,42 @@ class Constants(object):
     load_dotenv()
     data = Faker()
 
-    url = [
-        "https://todoist.com/es",
-        "UAT",
-        "DEV",
-        "TEST"
-    ]
+    url = {
+        "prod": "https://todoist.com/es",
+        "UAT": "dsad",
+        "DEV": "dsad",
+        "TEST": "dsad"
+    }
 
-    dates = [
-        "Today",
-        "Tomorrow",
-        "Weekend",
-        "Next Week"
-    ]
+    dates = {
+        "today": "today",
+        "tomorrow": "tomorrow",
+        "week": "weekend",
+        "next": "nextweek"
+    }
 
-    error_msg = [
-        "Email o contraseña incorrectos.",
-        "Las contraseñas deben tener al menos 8 caracteres.",
-        "Introduce una dirección de email válida."
-    ]
+    error_msg = {
+        "bad_credentials": "Email o contraseña incorrectos.",
+        "bad_password": "Las contraseñas deben tener al menos 8 caracteres.",
+        "bad_email": "Introduce una dirección de email válida."
+    }
 
-    tasks_data = [
-        "Name: " + data.uuid4(),
-        "Description: " + data.uuid4()
-    ]
+    tasks_data = {
+        "name": "Task Name: " + data.uuid4(),
+        "description": "Task Description: " + data.uuid4()
+    }
+
+    project_data = {
+        "name": "Project Name: " + data.uuid4(),
+        "view": {
+            "list": "list_view_",
+            "panel": "list_board_"
+        }
+    }
+
+    section_data = {
+        "name": "Section Name: " + data.uuid4()
+    }
 
     credentials = {
         "users": {
