@@ -9,12 +9,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  REAL_USERNAME : ${{secrets.REAL_USERNAME}}
-  REAL_PASSWORD : ${{secrets.REAL_PASSWORD}}
-  FAKE_USERNAME : ${{secrets.FAKE_USERNAME}}
-  FAKE_PASSWORD : ${{secrets.FAKE_PASSWORD}}
-
 permissions:
   contents: read
 
@@ -41,9 +35,14 @@ jobs:
         #flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         #flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with unittest
-      uses: c-py/action-dotenv-to-setenv@v2
+    - name: Tests with unittest
+      uses: iamsauravsharma/create-dotenv@v1.2.1
       with:
-        env-file: .env
+        file-name: '.env'
+      env:
+        REAL_USERNAME: ${{secrets.REAL_USERNAME}}
+        REAL_PASSWORD: ${{secrets.REAL_PASSWORD}}
+        FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
+        FAKE_PASSWORD: ${{secrets.FAKE_PASSWORD}}
       run: |
         python -m unittest tests/e2e/unittest/login-test.py
