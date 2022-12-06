@@ -34,6 +34,7 @@ class Constants(object):
 
     project_data = {
         "name": "Project Name: " + data.uuid4(),
+        # FOR DYNAMIC SELECTORS
         "view": {
             "list": "list_view_",
             "panel": "list_board_"

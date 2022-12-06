@@ -22,6 +22,7 @@ class Helpers(object):
             print('Element does not exist!')
             assert False
 
+    # NO SIRVE
     def element_contains_partial_text(self, locator, text):
         try:
             element_text = EC.text_to_be_present_in_element(locator, text)

@@ -19,10 +19,13 @@ class SectionTest(unittest.TestCase):
         Helpers.click_visible_element(self, SideBarLoc.inbox_li_btn)
 
     def test_create_section(self):
-        Home.create_section(self, Constants.section_data["name"])
+        Home.create_sections(self, 1, Constants.section_data["name"])
+
+    def test_delete_sections(self):
+        Home.delete_all_sections(self)
 
     def tearDown(self):
-        Helpers.wait_seconds(self, 5)
+        Helpers.wait_seconds(self, 2)
         self.driver.quit()
 
     if __name__ == "__main__":

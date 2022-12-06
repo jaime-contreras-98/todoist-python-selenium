@@ -6,6 +6,7 @@ from pom.pages.login import Login
 from pom.pages.project import Project
 from pom.locators.base_loc import BaseLoc
 from pom.locators.home_loc import HomeLoc
+from pom.pages.home import Home
 from pom.locators.sidebar_loc import SideBarLoc
 
 
@@ -21,10 +22,15 @@ class ProjectTest(unittest.TestCase):
 
     def test_create_project(self):
         Project.create_projects(self, 1, Constants.project_data["name"], False, Constants.project_data["view"]["panel"])
-        Helpers.element_contains_partial_text(self, HomeLoc.header_lbl, Constants.project_data["name"])
+        Home.validate_project(self)
 
     def test_create_project_fav(self):
-        Project.create_projects(self, 2, Constants.project_data["name"], True, Constants.project_data["view"]["list"])
+        Project.create_projects(self, 1, Constants.project_data["name"], True, Constants.project_data["view"]["list"])
+        Home.validate_project(self)
+
+    def test_create_projects(self):
+        Project.create_projects(self, 3, Constants.project_data["name"], True, Constants.project_data["view"]["list"])
+        Home.validate_project(self)
 
     def test_delete_all_projects(self):
         Project.delete_all_projects(self)

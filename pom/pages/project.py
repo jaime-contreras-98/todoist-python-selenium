@@ -1,6 +1,5 @@
 import random
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from pom.locators.sidebar_loc import SideBarLoc
@@ -39,5 +38,3 @@ class Project(object):
         except NoSuchElementException:
             print("No projects found")
 
-    def validate_task(self, name):
-        self.driver.find_element(By.PARTIAL_LINK_TEXT, name)
