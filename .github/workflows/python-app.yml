@@ -16,6 +16,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    - services:
+        - selenium:
+            - selenium/standalone-chrome
 
     steps:
     - uses: actions/checkout@v3
@@ -37,10 +40,5 @@ jobs:
         #flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with unittest
       run: |
+        
         python -m unittest tests/e2e/unittest/login-test.py
-      env: |
-        REAL_USERNAME: ${{secrets.REAL_USERNAME}}
-        REAL_PASSWORD: ${{secrets.REAL_PASSWORD}}
-        FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
-        FAKE_PASSWORD: ${{secrets.FAKE_PASSWORD}}
-        file_name: .env
