@@ -44,6 +44,15 @@ jobs:
         REAL_PASSWORD: ${{secrets.REAL_PASSWORD}}
         FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
         FAKE_PASSWORD: ${{secrets.FAKE_PASSWORD}}
-    - name: Tests with unittest
+    - name: Login tests with unittest
       run: |
         python -m unittest tests/e2e/unittest/login-test.py
+    - name: Project tests with unittest
+      run: |
+        python -m unittest tests/e2e/unittest/project-test.py
+    - name: Section tests with unittest
+      run: |
+        python -m unittest tests/e2e/unittest/section-test.py
+    - name: Task tests with unittest
+      run: |
+        python -m unittest tests/e2e/unittest/task-test.py
