@@ -38,7 +38,7 @@ jobs:
     - name: Test with unittest
       run: |
         python -m unittest tests/e2e/unittest/login-test.py
-      with: |
+      env: |
         envkey_REAL_USERNAME: ${{secrets.REAL_USERNAME}}
         envkey_REAL_PASSWORD: ${{secrets.REAL_PASSWORD}}
         envkey_FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
