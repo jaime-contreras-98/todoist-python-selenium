@@ -24,10 +24,10 @@ jobs:
       with:
         python-version: "3.10"
     - name: Install Google Chrome
-      run:
-        chmod +x ./scripts/InstallChrome.sh ./scripts/InstallChrome.sh
+      uses: browser-actions/setup-chrome@latest
     - name: Install dependencies
       run: |
+        chrome --version
         python -m pip install --upgrade pip
         pip install flake8 pytest
       #  if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
