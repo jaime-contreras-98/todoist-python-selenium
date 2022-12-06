@@ -39,8 +39,8 @@ jobs:
       run: |
         python -m unittest tests/e2e/unittest/login-test.py
       env: |
-        envkey_REAL_USERNAME: ${{secrets.REAL_USERNAME}}
-        envkey_REAL_PASSWORD: ${{secrets.REAL_PASSWORD}}
-        envkey_FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
-        envkey_FAKE_PASSWORD: ${{secrets.FAKE_PASSWORD}}
+        REAL_USERNAME: ${{secrets.REAL_USERNAME}}
+        REAL_PASSWORD: ${{secrets.REAL_PASSWORD}}
+        FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
+        FAKE_PASSWORD: ${{secrets.FAKE_PASSWORD}}
         file_name: .env
