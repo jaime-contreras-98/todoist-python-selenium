@@ -3,6 +3,8 @@ from selenium import webdriver
 from helpers.keywords import Helpers
 from data.constants import Constants
 from pom.locators.base_loc import BaseLoc
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from pom.locators.sidebar_loc import SideBarLoc
 from pom.locators.login_loc import LoginLoc
 from pom.pages.login import Login
@@ -11,7 +13,9 @@ from pom.pages.login import Login
 class LoginTest(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        options = Options()
+        options.headless = True
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         self.driver.maximize_window()
         self.driver.get(Constants.url["prod"])
         self.driver.find_element(*BaseLoc.sign_in_lnk).click()
