@@ -36,6 +36,13 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         #flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Tests with unittest
-
+      uses: iamsauravsharma/create-dotenv@v1.2.1
+      with:
+        file-name: '.env'
+      env:
+        REAL_USERNAME: ${{secrets.REAL_USERNAME}}
+        REAL_PASSWORD: ${{secrets.REAL_PASSWORD}}
+        FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
+        FAKE_PASSWORD: ${{secrets.FAKE_PASSWORD}}
       run: |
         python -m unittest tests/e2e/unittest/login-test.py
