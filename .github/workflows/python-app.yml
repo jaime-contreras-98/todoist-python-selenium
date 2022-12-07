@@ -4,10 +4,20 @@
 name: Python Unit tests with Selenium
 
 on:
+  workflow_dispatch:
+    inputs:
+      task_run:
+        description: 'Tasks to run'
+        required: true
+        default: 'Login'
+      generate_report:
+        description: 'Publish report'
+        required: false
+
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
 
 permissions:
   contents: read
@@ -44,15 +54,19 @@ jobs:
         REAL_PASSWORD: ${{secrets.REAL_PASSWORD}}
         FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
         FAKE_PASSWORD: ${{secrets.FAKE_PASSWORD}}
-    - name: Login tests with unittest
+    - if: github.event.inputs.task_run == 'login'
+      name: Login tests with unittest
       run: |
         python -m unittest tests/e2e/unittest/login-test.py
-    - name: Project tests with unittest
+    - if: github.event.inputs.task_run == 'projects'
+      name: Project tests with unittest
       run: |
         python -m unittest tests/e2e/unittest/project-test.py
-    - name: Section tests with unittest
+    - if: github.event.inputs.task_run == 'sections'
+      name: Section tests with unittest
       run: |
         python -m unittest tests/e2e/unittest/section-test.py
-    - name: Task tests with unittest
+    - if: github.event.inputs.task_run == 'tasks'
+      name: Task tests with unittest
       run: |
         python -m unittest tests/e2e/unittest/task-test.py
