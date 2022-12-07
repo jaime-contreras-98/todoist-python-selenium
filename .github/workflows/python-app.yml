@@ -9,15 +9,15 @@ on:
       task_run:
         description: 'Tasks to run'
         required: true
-        default: 'Login'
+        default: 'login'
       generate_report:
         description: 'Publish report'
         required: false
 
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main", "master" ]
+  #push:
+  #  branches: [ "main" ]
+  #pull_request:
+  #  branches: [ "main", "master" ]
 
 permissions:
   contents: read
@@ -55,18 +55,22 @@ jobs:
         FAKE_USERNAME: ${{secrets.FAKE_USERNAME}}
         FAKE_PASSWORD: ${{secrets.FAKE_PASSWORD}}
     - if: github.event.inputs.task_run == 'login'
-      name: Login tests with unittest
+      name: Login tests with test
       run: |
-        python -m unittest tests/e2e/unittest/login-test.py
+        python -m unittest tests/e2e/test/test_login.py
     - if: github.event.inputs.task_run == 'projects'
-      name: Project tests with unittest
+      name: Project tests with test
       run: |
-        python -m unittest tests/e2e/unittest/project-test.py
+        python -m unittest tests/e2e/test/test_projects.py
     - if: github.event.inputs.task_run == 'sections'
-      name: Section tests with unittest
+      name: Section tests with test
       run: |
-        python -m unittest tests/e2e/unittest/section-test.py
+        python -m unittest tests/e2e/test/test_sections.py
     - if: github.event.inputs.task_run == 'tasks'
-      name: Task tests with unittest
+      name: Task tests with test
       run: |
-        python -m unittest tests/e2e/unittest/task-test.py
+        python -m unittest tests/e2e/test/test_tasks.py
+    - if: github.event.inputs.task_run == 'all'
+      name: All tests with test
+      run: |
+        python -m unittest

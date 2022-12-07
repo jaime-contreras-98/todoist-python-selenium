@@ -15,6 +15,7 @@ class LoginTest(unittest.TestCase):
     def setUp(self):
         options = Options()
         options.headless = True
+        print("========== LOGIN TESTS ==========")
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         self.driver.maximize_window()
         self.driver.get(Constants.url["prod"])

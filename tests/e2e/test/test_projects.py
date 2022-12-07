@@ -5,7 +5,8 @@ from helpers.keywords import Helpers
 from pom.pages.login import Login
 from pom.pages.project import Project
 from pom.locators.base_loc import BaseLoc
-from pom.locators.home_loc import HomeLoc
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from pom.pages.home import Home
 from pom.locators.sidebar_loc import SideBarLoc
 
@@ -13,7 +14,10 @@ from pom.locators.sidebar_loc import SideBarLoc
 class ProjectTest(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        options = Options()
+        options.headless = True
+        print("========== PROJECTS TESTS ==========")
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         self.driver.maximize_window()
         self.driver.get(Constants.url["prod"])
         self.driver.find_element(*BaseLoc.sign_in_lnk).click()

@@ -1,6 +1,8 @@
 import unittest
 from selenium import webdriver
 from data.constants import Constants
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from helpers.keywords import Helpers
 from pom.pages.login import Login
 from pom.pages.home import Home
@@ -11,7 +13,10 @@ from pom.locators.sidebar_loc import SideBarLoc
 class SectionTest(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        options = Options()
+        options.headless = True
+        print("========== SECTIONS TESTS ==========")
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         self.driver.maximize_window()
         self.driver.get(Constants.url["prod"])
         self.driver.find_element(*BaseLoc.sign_in_lnk).click()
