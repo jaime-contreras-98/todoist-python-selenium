@@ -16,7 +16,7 @@ class ProjectTest(unittest.TestCase):
     def setUp(self):
         options = Options()
         options.headless = True
-        print("========== PROJECTS TESTS ==========")
+        print("\n========== PROJECTS TESTS ==========")
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         self.driver.maximize_window()
         self.driver.get(Constants.url["prod"])

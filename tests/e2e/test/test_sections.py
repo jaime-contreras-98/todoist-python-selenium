@@ -15,7 +15,7 @@ class SectionTest(unittest.TestCase):
     def setUp(self):
         options = Options()
         options.headless = True
-        print("========== SECTIONS TESTS ==========")
+        print("\n========== SECTIONS TESTS ==========")
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         self.driver.maximize_window()
         self.driver.get(Constants.url["prod"])
@@ -25,6 +25,9 @@ class SectionTest(unittest.TestCase):
 
     def test_create_section(self):
         Home.create_sections(self, 1, Constants.section_data["name"])
+
+    def test_create_multiple_sections(self):
+        Home.create_sections(self, 4, Constants.section_data["name"])
 
     def test_delete_sections(self):
         Home.delete_all_sections(self)

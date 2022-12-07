@@ -14,8 +14,8 @@ class TaskTest(unittest.TestCase):
 
     def setUp(self):
         options = Options()
-        options.headless = True
-        print("========== TASKS TESTS ==========")
+        options.headless = False
+        print("\n========== TASKS TESTS ==========")
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         self.driver.maximize_window()
         self.driver.get(Constants.url["prod"])
